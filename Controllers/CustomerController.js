@@ -96,12 +96,12 @@ module.exports = {
   },
   getCustomerById: async (req, res) => {
     try {
-      const { Customer_id } = req.params
-      const Customer = await CustomerModel.findById({ _id: Customer_id });
+      const { customer_id } = req.params
+      const Customer = await CustomerModel.findById({ _id: customer_id });
       if (Customer == null) {
         return res
           .status(404)
-          .json({ status: false, message: `Customer Not Found With ID :- ${Customer_id} ` });
+          .json({ status: false, message: `Customer Not Found With ID :- ${customer_id} ` });
       }
       return res
         .status(200)
@@ -114,12 +114,12 @@ module.exports = {
   },
   updateCustomer: async (req, res) => {
     try {
-      const { Customer_id } = req.params
-      const Customer = await CustomerModel.findByIdAndUpdate({ _id: Customer_id }, req.body, { new: true });
+      const { customer_id } = req.params
+      const Customer = await CustomerModel.findByIdAndUpdate({ _id: customer_id }, req.body, { new: true });
       if (Customer == null) {
         return res
           .status(404)
-          .json({ status: false, message: `Customer Not Found With ID :- ${Customer_id} ` });
+          .json({ status: false, message: `Customer Not Found With ID :- ${customer_id} ` });
       }
       return res
         .status(200)
@@ -132,14 +132,14 @@ module.exports = {
   },
   updateCustomerStatus: async (req, res) => {
     try {
-      const { Customer_id, status } = req.params
-      const Customer = await CustomerModel.findByIdAndUpdate(Customer_id,
+      const { customer_id, status } = req.params
+      const Customer = await CustomerModel.findByIdAndUpdate(customer_id,
         { $set: { is_active: status } },
         { new: true });
       if (Customer == null) {
         return res
           .status(404)
-          .json({ status: false, message: `Customer Not Found With ID :- ${Customer_id} ` });
+          .json({ status: false, message: `Customer Not Found With ID :- ${customer_id} ` });
       }
       return res
         .status(200)
@@ -152,12 +152,12 @@ module.exports = {
   },
   deleteCustomer: async (req, res) => {
     try {
-      const { Customer_id } = req.params
-      const Customer = await CustomerModel.findByIdAndDelete({ _id: Customer_id });
+      const { customer_id } = req.params
+      const Customer = await CustomerModel.findByIdAndDelete({ _id: customer_id });
       if (Customer == null) {
         return res
           .status(404)
-          .json({ status: false, message: `Customer Not Found With ID :- ${Customer_id} ` });
+          .json({ status: false, message: `Customer Not Found With ID :- ${customer_id} ` });
       }
       return res
         .status(200)

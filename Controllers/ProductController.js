@@ -11,7 +11,7 @@ module.exports = {
         status,
         is_active,} = req.body;
 
-      const Product = await ProductModel.findOne({ Product_name: Product_name });
+      const Product = await ProductModel.findOne({ name: name });
 
       if (Product) {
         return res.status(400).json({ status: true, message: "Product already exists" });
@@ -61,12 +61,12 @@ module.exports = {
   },
   getProductById: async (req, res) => {
     try {
-      const { Product_id } = req.params
-      const Product = await ProductModel.findById({ _id: Product_id });
+      const { product_id } = req.params
+      const Product = await ProductModel.findById({ _id: product_id });
       if (Product == null) {
         return res
           .status(404)
-          .json({ status: false, message: `Product Not Found With ID :- ${Product_id} ` });
+          .json({ status: false, message: `Product Not Found With ID :- ${product_id} ` });
       }
       return res
         .status(200)
@@ -79,12 +79,12 @@ module.exports = {
   },
   updateProduct: async (req, res) => {
     try {
-      const { Product_id } = req.params
-      const Product = await ProductModel.findByIdAndUpdate({ _id: Product_id }, req.body, { new: true });
+      const { product_id } = req.params
+      const Product = await ProductModel.findByIdAndUpdate({ _id: product_id }, req.body, { new: true });
       if (Product == null) {
         return res
           .status(404)
-          .json({ status: false, message: `Product Not Found With ID :- ${Product_id} ` });
+          .json({ status: false, message: `Product Not Found With ID :- ${product_id} ` });
       }
       return res
         .status(200)
@@ -97,14 +97,14 @@ module.exports = {
   },
   updateProductStatus: async (req, res) => {
     try {
-      const { Product_id, status } = req.params
-      const Product = await ProductModel.findByIdAndUpdate(Product_id,
+      const { product_id, status } = req.params
+      const Product = await ProductModel.findByIdAndUpdate(product_id,
         { $set: { is_active: status } },
         { new: true });
       if (Product == null) {
         return res
           .status(404)
-          .json({ status: false, message: `Product Not Found With ID :- ${Product_id} ` });
+          .json({ status: false, message: `Product Not Found With ID :- ${product_id} ` });
       }
       return res
         .status(200)
@@ -117,12 +117,12 @@ module.exports = {
   },
   deleteProduct: async (req, res) => {
     try {
-      const { Product_id } = req.params
-      const Product = await ProductModel.deleteOne({ _id: Product_id });
+      const { product_id } = req.params
+      const Product = await ProductModel.deleteOne({ _id: product_id });
       if (Product == null) {
         return res
           .status(404)
-          .json({ status: false, message: `Product Not Found With ID :- ${Product_id} ` });
+          .json({ status: false, message: `Product Not Found With ID :- ${product_id} ` });
       }
       return res
         .status(200)
