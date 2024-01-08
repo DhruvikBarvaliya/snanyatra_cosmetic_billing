@@ -1,2 +1,2 @@
-# hrms
-hrms demo
+# SCB
+Snanyatra Cosmetic Billing
